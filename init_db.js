@@ -77,7 +77,7 @@ async function main(){
     ON CONFLICT 
     DO NOTHING;`;
     // let visted = false;
-    for (let i = 1 ; i<= 1 ; i++){
+    for (let i = 2 ; i<= 333 ; i++){
         //
         
         const promises = [];
