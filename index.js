@@ -244,8 +244,7 @@ async function main(){
         
         // Get latest date
         const get_date_query = `SELECT postdate FROM posts
-        WHERE postdate < '2020-08-11'
-	AND magnet IS NOT NULL
+        WHERE magnet IS NOT NULL
 	AND downloaded = false
 	ORDER BY postdate DESC
         LIMIT 1;`;
