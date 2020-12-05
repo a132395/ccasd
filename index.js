@@ -176,7 +176,7 @@ async function updateDB(){
     ON CONFLICT 
     DO NOTHING;`;
 
-    for (let i = 1 ; i<= 1 ; i++){
+    for (let i = 1 ; i< 1 ; i++){
         //
         const promises = [];
         try{
