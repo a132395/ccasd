@@ -64,7 +64,6 @@ async function main(){
     // console.log($("tbody[id^='normalthread']").length);
     const lastPageHref = $("div.pg > a.last").attr('href');
     response = await gotInstance.get(lastPageHref);
-    console.log(lastPageHref)
     const regex = /(forum-103-)(\d*).html/;
     //console.log(regex);
     const match = lastPageHref.match(regex);
@@ -78,7 +77,7 @@ async function main(){
     ON CONFLICT 
     DO NOTHING;`;
     // let visted = false;
-    for (let i = 1 ; i<= 10 ; i++){
+    for (let i = 1 ; i<= 1 ; i++){
         //
         
         const promises = [];
