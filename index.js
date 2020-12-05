@@ -155,21 +155,19 @@ async function restore_undownloaded(){
 }
 
 async function updateDB(){
-    let respone = await gotInstance.get('forum.php?mod=forumdisplay&fid=36&typeid=672&filter=typeid&typeid=672&page=1');
+    let respone = await gotInstance.get('forum.php?mod=forumdisplay&fid=2&page=');
     const html = respone.body;
     const $ = cheerio.load(html);
     // console.log($("tbody[id^='normalthread']").length);
     const lastPageHref = $("div.pg > a.last").attr('href');
     response = await gotInstance.get(lastPageHref);
     console.log(lastPageHref);
-    //const regex = /(forum.php?mod=forumdisplay&fid=36&typeid=672&filter=typeid&typeid=672&page=)(\d*).html/;
-    //forum-36-
-    //const match = lastPageHref.match(regex);
-    //const forumPrefix = match[1];
-    //const maxPageNumber = parseInt(match[2]);
-    //console.log(forumPrefix,maxPageNumber);
-    const forumPrefix = 'forum.php?mod=forumdisplay&fid=36&typeid=672&filter=typeid&typeid=672&page='
-    const maxPageNumber = 43
+    const regex = /(forum-2-)(\d*).html/;
+    //console.log(regex);
+    const match = lastPageHref.match(regex);
+    const forumPrefix = match[1];
+    const maxPageNumber = parseInt(match[2]);
+
 
     console.log('Checking new posts...');
     const query_text = `INSERT INTO posts (url,title,postdate,downloaded)
