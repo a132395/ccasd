@@ -6,7 +6,7 @@
 		}
 	],
 	"description": "Run aria and fetch sht",
-	"repository": "https://github.com/a132395/casd",
+	"repository": "https://github.com/a132395/ccasd",
 	"keywords": ["AriaNG"],
 	"env": {
 		"HEROKU_APP_NAME": {
