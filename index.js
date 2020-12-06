@@ -155,14 +155,14 @@ async function restore_undownloaded(){
 }
 
 async function updateDB(){
-    let respone = await gotInstance.get('forum.php?mod=forumdisplay&fid=38&page=');
+    let respone = await gotInstance.get('forum.php?mod=forumdisplay&fid=2&page=');
     const html = respone.body;
     const $ = cheerio.load(html);
     // console.log($("tbody[id^='normalthread']").length);
     const lastPageHref = $("div.pg > a.last").attr('href');
     response = await gotInstance.get(lastPageHref);
     console.log(lastPageHref);
-    const regex = /(forum-38-)(\d*).html/;
+    const regex = /(forum-2-)(\d*).html/;
     //console.log(regex);
     const match = lastPageHref.match(regex);
     const forumPrefix = match[1];
@@ -249,8 +249,17 @@ async function main(){
 	ORDER BY postdate DESC
         LIMIT 1;`;
         let result = await client.query(get_date_query);
-        const latestDate = result.rows[0].postdate;
-        
+        if (result==null|result.isEmpty()){
+	    const latestDate = result.rows[0].postdate;
+	    const get_new_date_query = `SELECT postdate FROM posts
+            ORDER BY postdate DESC
+            LIMIT 1;`;
+	    let result2 = await client.query(get_new_date_query);
+            const latestDate = result2.rows[0].postdate;
+	}else{
+            const latestDate = result.rows[0].postdate;
+	}
+	    
         // Query job that is not in downloading table
         const prepare_jobs_query = `SELECT url,magnet,title FROM posts
         WHERE postdate = $1
