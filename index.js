@@ -244,21 +244,10 @@ async function main(){
         
         // Get latest date
         const get_date_query = `SELECT postdate FROM posts
-        WHERE magnet IS NOT NULL
-	AND downloaded = false
 	ORDER BY postdate DESC
         LIMIT 1;`;
         let result = await client.query(get_date_query);
-	console.log(result.rows[0].postdate)
-        if (result.rows[0].postdate==null){
-	    const get_new_date_query = `SELECT postdate FROM posts
-            ORDER BY postdate DESC
-            LIMIT 1;`;
-	    const result2 = await client.query(get_new_date_query);
-            const latestDate = result2.rows[0].postdate;
-	}else{
-            const latestDate = result.rows[0].postdate;
-	}
+        const latestDate = result.rows[0].postdate;
 	    
         // Query job that is not in downloading table
         const prepare_jobs_query = `SELECT url,magnet,title FROM posts
