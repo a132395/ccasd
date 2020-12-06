@@ -249,8 +249,8 @@ async function main(){
 	ORDER BY postdate DESC
         LIMIT 1;`;
         let result = await client.query(get_date_query);
-	console.log(result2.rows[0])
-        if (result2.rows[0]==null){
+	console.log(result.rows[0])
+        if (result.rows[0]==null){
 	    const get_new_date_query = `SELECT postdate FROM posts
             ORDER BY postdate DESC
             LIMIT 1;`;
