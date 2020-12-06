@@ -254,7 +254,7 @@ async function main(){
 	    const get_new_date_query = `SELECT postdate FROM posts
             ORDER BY postdate DESC
             LIMIT 1;`;
-	    let result2 = await client.query(get_new_date_query);
+	    const result2 = await client.query(get_new_date_query);
             const latestDate = result2.rows[0].postdate;
 	}else{
             const latestDate = result.rows[0].postdate;
